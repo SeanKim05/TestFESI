@@ -38,7 +38,7 @@ export default function GatehringSection({
 
       <div className="w-full md:w-1/2 h-[270px] py-6 rounded-[24px] border-2 border-gray-200">
         <GatheringInfo
-          dateInfo={detailData?.registrationEnd}
+          dateInfo={detailData?.dateTime}
           titleInfo={detailData?.name}
           locationInfo={detailData?.location}
           pageId={pageId}

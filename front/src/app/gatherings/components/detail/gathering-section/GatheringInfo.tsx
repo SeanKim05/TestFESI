@@ -16,6 +16,7 @@ export default function GatheringInfo({
   locationInfo,
   pageId,
 }: GatheringInfo) {
+  console.log(dateInfo);
   return (
     <div className="relative mx-[22px] mb-3">
       <div className="absolute right-0">

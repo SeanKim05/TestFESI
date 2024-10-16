@@ -36,6 +36,5 @@ export const getGatheringList = async ({
       sortOrder,
     },
   });
-
   return res.data;
 };
