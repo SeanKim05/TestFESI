@@ -18,10 +18,12 @@ const InfiniteScroll = ({
   });
 
   const isFetchingRef = useRef(false);
-
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingRef.current && !isFetching) {
       isFetchingRef.current = true;
+      console.log(
+        inView && hasNextPage && !isFetchingRef.current && !isFetching,
+      );
       fetchNextPage();
     }
   }, [inView, hasNextPage, isFetching, fetchNextPage]);

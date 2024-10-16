@@ -15,6 +15,7 @@ export async function prefetchGatherings({
   date,
   sortBy,
   sortOrder,
+  isServer,
 }: {
   queryClient: QueryClient;
   type?: GatheringType;
@@ -22,6 +23,7 @@ export async function prefetchGatherings({
   date?: Date;
   sortBy?: SortByType;
   sortOrder?: SortOrderType;
+  isServer: boolean;
 }) {
   await queryClient.prefetchInfiniteQuery<IGatherings[]>({
     initialPageParam: 0,
@@ -34,6 +36,7 @@ export async function prefetchGatherings({
         date,
         sortBy,
         sortOrder,
+        isServer,
       }),
     getNextPageParam: (lastPage: IGatherings[], allPages: IGatherings[][]) => {
       if (lastPage.length < 10) return null;
