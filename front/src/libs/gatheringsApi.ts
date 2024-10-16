@@ -36,18 +36,18 @@ export const getGatheringList = async ({
     },
   });
 
-  // Adjust registrationEnd date
+  // Adjust registrationEnd and dateTime by adding 9 hours
   const updatedData = res.data.map((gathering: IGatherings) => {
     const registrationEndDate = new Date(gathering.registrationEnd);
-    const endDate = new Date(gathering.dateTime);
+    const dateTime = new Date(gathering.dateTime);
 
-    registrationEndDate.setHours(registrationEndDate.getHours() + 9); // Add 9 hours
-    endDate.setHours(endDate.getHours() + 9); // Add 9 hours
+    registrationEndDate.setHours(registrationEndDate.getHours() + 9); // Add 9 hours to registrationEnd
+    dateTime.setHours(dateTime.getHours() + 9); // Add 9 hours to dateTime
 
     return {
       ...gathering,
       registrationEnd: registrationEndDate.toISOString(),
-      endDate: endDate.toISOString(),
+      dateTime: dateTime.toISOString(), // Modify dateTime instead of using endDate
     };
   });
 
