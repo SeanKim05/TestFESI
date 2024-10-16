@@ -18,7 +18,6 @@ interface GetGatheringListParams {
 
 export const getGatheringList = async ({
   pageParam,
-  // offset 이외의 값 undefined로 설정
   type = undefined,
   location = undefined,
   date = undefined,
@@ -27,7 +26,7 @@ export const getGatheringList = async ({
 }: GetGatheringListParams): Promise<IGatherings[]> => {
   const res = await axiosInstance.get(`/gatherings`, {
     params: {
-      limit: 10, // limit 값 10으로 고정
+      limit: 10,
       offset: pageParam,
       date,
       type,
@@ -36,5 +35,17 @@ export const getGatheringList = async ({
       sortOrder,
     },
   });
-  return res.data;
+
+  // Adjust registrationEnd date
+  const updatedData = res.data.map((gathering: IGatherings) => {
+    const registrationEndDate = new Date(gathering.registrationEnd);
+    registrationEndDate.setHours(registrationEndDate.getHours() + 9); // Add 9 hours
+    return {
+      ...gathering,
+      registrationEnd: registrationEndDate.toISOString(), // Convert back to ISO string
+    };
+  });
+
+  console.log(updatedData);
+  return updatedData;
 };
