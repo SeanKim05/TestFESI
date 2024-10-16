@@ -48,7 +48,6 @@ export default function RootLayout({
             <Toast />
             {children}
           </main>
-          \{" "}
         </ReactQueryClientProvider>
       </body>
     </html>
