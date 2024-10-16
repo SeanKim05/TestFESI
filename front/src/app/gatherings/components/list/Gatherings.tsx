@@ -12,6 +12,7 @@ import { IGatherings } from "@/types/gatherings";
 
 function Gatherings() {
   const { tab: type, location, date, sortBy, sortOrder } = useGatheringsStore();
+  const isClient = typeof window !== "undefined";
 
   const {
     data: gatherings = [],
@@ -25,6 +26,7 @@ function Gatherings() {
     date,
     sortBy,
     sortOrder,
+    isClient,
   });
 
   return (

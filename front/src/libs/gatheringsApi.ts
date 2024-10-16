@@ -14,7 +14,7 @@ interface GetGatheringListParams {
   date?: Date | undefined;
   sortBy?: SortByType | undefined;
   sortOrder?: SortOrderType | undefined;
-  isServer?: boolean;
+  isClient?: boolean;
 }
 
 export const getGatheringList = async ({
@@ -24,7 +24,7 @@ export const getGatheringList = async ({
   date = undefined,
   sortBy = undefined,
   sortOrder = undefined,
-  isServer,
+  isClient,
 }: GetGatheringListParams): Promise<IGatherings[]> => {
   const res = await axiosInstance.get(`/gatherings`, {
     params: {
@@ -48,10 +48,10 @@ export const getGatheringList = async ({
 
     return {
       ...gathering,
-      registrationEnd: isServer
+      registrationEnd: !isClient
         ? registrationEndDate.toISOString()
         : registrationEndDate,
-      dateTime: isServer ? dateTime.toISOString() : dateTime, // Modify dateTime instead of using endDate
+      dateTime: !isClient ? dateTime.toISOString() : dateTime, // Modify dateTime instead of using endDate
     };
   });
 

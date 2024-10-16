@@ -15,6 +15,7 @@ export const useFetchGatherings = ({
   date,
   sortOrder,
   pageSize = 10,
+  isClient,
 }: {
   type?: GatheringType;
   location?: LocationType;
@@ -22,6 +23,7 @@ export const useFetchGatherings = ({
   sortBy?: SortByType;
   sortOrder?: SortOrderType;
   pageSize?: number;
+  isClient: boolean;
 }) => {
   return useInfiniteQuery({
     queryKey: ["gatherings", type, location, date, sortBy, sortOrder],
@@ -34,6 +36,7 @@ export const useFetchGatherings = ({
         date,
         sortBy,
         sortOrder,
+        isClient,
       }),
     getNextPageParam: (lastPage: IGatherings[], allPages: IGatherings[][]) => {
       if (lastPage.length < pageSize) return null;
@@ -44,5 +47,6 @@ export const useFetchGatherings = ({
     // refetchInterval: 3600000, // 1시간마다 refetch
     refetchOnWindowFocus: false,
     retry: 3,
+    enabled: isClient,
   });
 };

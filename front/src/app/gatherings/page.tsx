@@ -14,7 +14,6 @@ export default async function Home() {
   const date = undefined;
   const sortBy = "dateTime";
   const sortOrder = "asc";
-  const isServer = typeof window === "undefined";
 
   await prefetchGatherings({
     queryClient,
@@ -23,7 +22,6 @@ export default async function Home() {
     date,
     sortBy,
     sortOrder,
-    isServer,
   });
 
   const dehydratedState = dehydrate(queryClient);
