@@ -14,6 +14,7 @@ import Filters from "@/app/gatherings/components/filter";
 const Favorites = () => {
   const { favorites, setFavoritesFromStorage } = useFavoritesStore();
   const { tab: type, location, date, sortBy, sortOrder } = useGatheringsStore();
+  const isClient = typeof window !== "undefined";
 
   const { data, fetchNextPage, hasNextPage, isFetching, isLoading } =
     useFetchGatherings({
@@ -22,6 +23,7 @@ const Favorites = () => {
       date,
       sortBy,
       sortOrder,
+      isClient,
     });
 
   useEffect(() => {
