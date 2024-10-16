@@ -50,8 +50,8 @@ export const getGatheringList = async ({
       ...gathering,
       registrationEnd: !isClient
         ? registrationEndDate.toISOString()
-        : registrationEndDate,
-      dateTime: !isClient ? dateTime.toISOString() : dateTime, // Modify dateTime instead of using endDate
+        : gathering.registrationEnd,
+      dateTime: !isClient ? dateTime.toISOString() : gathering.dateTime, // Modify dateTime instead of using endDate
     };
   });
 
